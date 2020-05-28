@@ -36,12 +36,10 @@ const GITHUB = {
             content: ''
         };
 
-        if (fs.dirent.isFile(this.COMMIT.file)) {
-            fs.open(this.COMMIT.file, 'r', function(e, fd) { 
-                if (e) return console.error(e.code);
-                result.content += readMyData(fd);
-            });
-        }
+        fs.open(this.COMMIT.file, 'r', function(e, fd) { 
+            if (e) return console.error(e.code);
+            result.content += readMyData(fd);
+        });
 
         result.content = base64encode(result.content);
 
