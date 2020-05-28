@@ -22,8 +22,8 @@ jobs:
         dest: packags-lock.json@release
     - name: Vanilla Node
       run: node index.js
-    - name: Eslint
-      run: npm run-script lint
+    # - name: Eslint
+    #   run: npm run-script lint
     - name: Build Package
       run: npm run-script package
 
