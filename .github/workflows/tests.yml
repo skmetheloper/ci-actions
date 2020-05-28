@@ -10,9 +10,8 @@ on:
     - master
 
 jobs:
-  runs-on: ubuntu-lastest
-
   index:
+    runs-on: ubuntu-lastest
     steps:
     - uses: actions/checkout@v2
     - run: npm install
