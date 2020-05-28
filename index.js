@@ -1,11 +1,13 @@
 const core = require('@actions/core');
 
-console.info([
-  core.getInputs('user'),
-  core.getInputs('token'),
-  core.getInputs('message'),
-  core.getInputs('content'),
-  core.getInputs('branch'),
-  core.getInputs('file'),
-  core.getInputs('dist')
-]);
+let inputs = [
+  core.getInput('user'),
+  core.getInput('token'),
+  core.getInput('message'),
+  core.getInput('content'),
+  core.getInput('branch'),
+  core.getInput('file'),
+  core.getInput('dist')
+];
+
+core.debug(inputs);
