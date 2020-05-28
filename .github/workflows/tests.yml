@@ -20,6 +20,8 @@ jobs:
         message: 'created new `package-lock.json` at `release`.'
         file: package-lock.json@master
         dest: packags-lock.json@release
+    - name: Vanilla Node
+      run: node index.js
     - name: Eslint
       run: npm run-script lint
     - name: Build Package
