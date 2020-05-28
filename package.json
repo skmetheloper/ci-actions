@@ -1,0 +1,15 @@
+{
+    "name": "etheio-ci-actions",
+    "description": "",
+    "license": "MIT",
+    "version": "0.1.0",
+    "author": "Shin Maung Maung <shinmaungmaung@gmail.com>",
+    "scripts": {
+        "test": "echo Nothing to execute",
+        "watch": "echo Nothing to execute",
+        "build": "echo Nothing to execute"
+    },
+    "main": "index.js",
+    "dependencies": {
+    }
+}
