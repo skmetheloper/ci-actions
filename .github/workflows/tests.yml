@@ -14,7 +14,7 @@ jobs:
     - uses: ./
       with:
         user: $GITHUB_USER
-        token: {GITHUB_SECRET_TOKEN}
+        token: '{YOUR_SECRET_TOKEN}
         repo: $GITHUB_WORKSPACE
         message: 'created new `package-lock.json` at `release`.'
         file: package-lock.json@master
