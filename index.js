@@ -67,7 +67,7 @@ res.onreadystatechange = function() {
   }
   return reject(this.status, JSON.parse(this.responseText));
 };
-res.submit('GET', source);
+res.open('GET', source);
 res.send();
 
 function resolve(status, data) {
