@@ -13,7 +13,8 @@
     "@actions/core": "^1.1.1",
     "nodejs-base64": "^1.0.3",
     "json-stringify": "*",
-    "json-parse": "*"
+    "json-parse": "*",
+    "xmlhttprequest": "*"
   },
   "devDependencies": {
     "@zeit/ncc": "^0.20.5",
