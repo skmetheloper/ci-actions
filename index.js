@@ -36,7 +36,7 @@ const GITHUB = {
             content: ''
         };
 
-        if (fs.isFile(this.COMMIT.file)) {
+        if (fs.dirent.isFile(this.COMMIT.file)) {
             fs.open(this.COMMIT.file, 'r', function(e, fd) { 
                 if (e) return console.error(e.code);
                 result.content += readMyData(fd);
