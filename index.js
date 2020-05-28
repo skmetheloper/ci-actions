@@ -36,7 +36,7 @@ const GITHUB = {
         return `${this.CREDENTIAL}/${path}?ref=${branch}`;
     },
     get destination() {
-        let [file, branch] = this.COMMIT.destination.split('@');
+        let [path, branch] = this.COMMIT.destination.split('@');
         typeof branch === 'undefined' && (branch = this.BRANCH);
         return `${this.CREDENTIAL}/${path}?ref=${branch}`;
     }
