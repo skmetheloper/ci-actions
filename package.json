@@ -5,8 +5,8 @@
   "version": "0.1.0",
   "author": "Shin Maung Maung <shinmaungmaung@gmail.com>",
   "scripts": {
-    "lint": "lint index.js",
-    "package": "ncc build index.js -o dist"
+    "lint": "node_modules/.bin/lint index.js",
+    "package": "node_modules/.bin/ncc build index.js -o dist"
   },
   "main": "index.js",
   "dependencies": {
@@ -14,8 +14,7 @@
   },
   "devDependencies": {
     "@zeit/ncc": "^0.20.5",
-    "eslint": "^6.3.0",
-    "jest": "^24.9.0"
+    "eslint": "^6.3.0"
   },
   "repository": {
     "type": "git",
