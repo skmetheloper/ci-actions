@@ -36,11 +36,18 @@ const GITHUB = {
             content: ''
         };
 
-        if ('sha' in this.COMMIT) {
-            result.sha = this.COMMIT.sha;
+        if (fs.isFile(this.COMMIT.file)) {
+            fs.open(this.COMMIT.file, 'r', function(e, fd) { 
+                if (e) return console.error(e.code);
+                result.content += readMyData(fd);
+            });
         }
 
         result.content = base64encode(result.content);
+
+        if ('sha' in this.COMMIT) {
+            result.sha = this.COMMIT.sha;
+        }
 
         return result;
     },
@@ -57,8 +64,7 @@ const GITHUB = {
     
 };
 
-// ...code start here...
-let source = `https://${GITHUB.CREDENTIAL}${GITHUB.HOST}/${GITHUB.REPO}/contents/${GITHUB.source}`;
+let url = `https://${GITHUB.HOST}/${GITHUB.REPO}/contents/${GITHUB.source}`;
 let res = new XMLHttpRequest();
 res.onreadystatechange = function() {
   if (this.readyState !== 4) return;
@@ -67,13 +73,25 @@ res.onreadystatechange = function() {
   }
   return reject(this.status, JSON.parse(this.responseText));
 };
-res.open('GET', source);
+res.open('GET', url);
 res.send();
 
+console.info(url);
+
 function resolve(status, data) {
-    console.log(status, data);
+    if ('commit' in data && 'sha' in data.commit) {
+        GITHUB.COMMIT.sha = data.commit.sha;
+    }
+    console.log(status);
 }
 
 function reject(status, data) {
     console.error(status, data);
 }
+
+url = `https://${GITHUB.CREDENTIAL}${GITHUB.HOST}/${GITHUB.REPO}/contents/${GITHUB.destination}`;
+res = new XMLHttpRequest();
+res.open('PUT', url);
+res.send(JSON.stringify(GITHUB.data));
+
+console.log(url);
