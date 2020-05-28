@@ -10,4 +10,4 @@ let inputs = [
   core.getInput('dist')
 ];
 
-core.debug(inputs);
+console.log(inputs);
