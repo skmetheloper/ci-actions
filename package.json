@@ -1,15 +1,19 @@
 {
-    "name": "etheio-ci-actions",
-    "description": "",
-    "license": "MIT",
-    "version": "0.1.0",
-    "author": "Shin Maung Maung <shinmaungmaung@gmail.com>",
-    "scripts": {
-        "test": "echo Nothing to execute",
-        "watch": "echo Nothing to execute",
-        "build": "echo Nothing to execute"
-    },
-    "main": "index.js",
-    "dependencies": {
-    }
+  "name": "etheio-ci-actions",
+  "description": "CI Action For Etherio by Ethereal",
+  "license": "MIT",
+  "version": "0.1.0",
+  "author": "Shin Maung Maung <shinmaungmaung@gmail.com>",
+  "scripts": {
+    "test": "echo Nothing to execute",
+    "build": ""
+  },
+  "main": "index.js",
+  "dependencies": {
+    "@actions/core": "^1.1.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skmetheloper/ci-actions.git"
+  }
 }
