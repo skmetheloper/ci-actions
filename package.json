@@ -11,7 +11,9 @@
   "main": "index.js",
   "dependencies": {
     "@actions/core": "^1.1.1",
-    "nodejs-base64": "^1.0.3"
+    "nodejs-base64": "^1.0.3",
+    "json-stringify": "*",
+    "json-parse": "*"
   },
   "devDependencies": {
     "@zeit/ncc": "^0.20.5",
