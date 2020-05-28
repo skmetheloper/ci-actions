@@ -9,7 +9,6 @@ inputs:
   token:
     description: 'github secret token'
     required: true
-    default: ${{secrets.GH_SECRET}}
 
   repo:
     description: 'github repository [ ci-actions | skmetheloper/ci-actions ]'
