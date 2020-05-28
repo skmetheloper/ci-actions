@@ -3,25 +3,23 @@ description: ''
 author: 'Shin Maung Maung'
 inputs:
   user:
-    description: 'github username'
+    description: 'GITHUB_ACTOR'
     required: true
-    default: ${{GITHUB_ACTOR}}
 
   token:
-    description: 'github secret token'
+    description: 'GITHUB_SECRET'
     required: true
 
   repo:
-    description: 'github repository [ ci-actions | skmetheloper/ci-actions ]'
+    description: 'GITHUB_REPOSITORY'
     required: true
-    default: ${{GITHUB_REPOSITORY}}
 
   branch:
-    description: 'github branch'
+    description: 'GITHUB_BRANCH'
     default: 'master'
 
   message:
-    description: 'commit message'
+    description: 'COMMIT_MESSAGE'
 
   file:
     description: 'source file path in workspace [ path/to/file | path/to/file@branch ]'
@@ -34,4 +32,4 @@ inputs:
 
 runs:
    using: 'node12'
-   main: 'index.js'
+   main: 'dist/index.js'
