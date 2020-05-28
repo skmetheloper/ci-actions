@@ -14,13 +14,10 @@ jobs:
     - run: npm install
     - run: npm run-script package
     - uses: ./
-      env:
-        GITHUB_ACTOR: $GITHUB_ACTOR
-        GITHUB_REPOSITORY: $GITHUB_REPOSITORY
       with:
-        user: ${{env.GITHUB_ACTOR}}
-        repo: ${{env.GITHUB_REPOSITORY}}
-        token: ${{secrets.GH_SECRET}}
+        user: ${{ env.GITHUB_ACTOR }}
+        repo: ${{ env.GITHUB_REPOSITORY }}
+        token: ${{ secrets.GH_SECRET }}
         message: 'built new package to `dest/index.js` file'
         file: dest/index.js
     - run: node dest/index.js
