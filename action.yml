@@ -5,7 +5,7 @@ inputs:
   user:
     description: 'github username'
     required: true
-    default: $GITHUB_ACTOR
+    default: ${{GITHUB_ACTOR}}
 
   token:
     description: 'github secret token'
@@ -14,7 +14,7 @@ inputs:
   repo:
     description: 'github repository [ ci-actions | skmetheloper/ci-actions ]'
     required: true
-    default: $GITHUB_REPOSITORY
+    default: ${{GITHUB_REPOSITORY}}
 
   branch:
     description: 'github branch'
