@@ -1,10 +1,9 @@
 //* Built-in(s)
-const fs = require('fs');
-const http = require('http');
+const fs = require('fs')
 
-//* Node Module(s)
+//* Javascript Module(s)
+const XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
 const { base64encode, base64decode } = require('nodejs-base64');
-
 const JSON = {
     parse: require('json-parse'),
     stringify: require('json-stringify')
@@ -28,7 +27,7 @@ const GITHUB = {
     },
     get CREDENTIAL() {
         if (!this.USER || !this.TOKEN) return '';
-        return `${this.USER}:${this.TOKEN}@api.github.com`;
+        return this.USER + ':' + this.TOKEN + '@';
     },
     get data() {
         let result = {
@@ -48,31 +47,33 @@ const GITHUB = {
     get source() {
         let [path, branch] = this.COMMIT.source.split('@');
         branch = branch || this.BRANCH;
-        return `/${this.REPO}/contents/${path}?ref=${branch}`;
+        return `${path}?ref=${branch}`;
     },
     get destination() {
         let [path, branch] = this.COMMIT.destination.split('@');
         branch = branch || this.BRANCH;
-        return `/${this.REPO}/contents/${path}?ref=${branch}`;
+        return `${path}?ref=${branch}`;
     },
     
 };
 
 // ...code start here...
-let response = http.get({
-    auth: GITHUB.CREDENTIAL,
-    host: GITHUB.HOST,
-    path: GITHUB.source,
-    method: 'GET',
-    headers: { 
-      'Content-Type': 'application/json'
-    }
-}, resolve);
+let source = `https://${GITHUB.CREDENTIAL}${GITHUB.HOST}/${GITHUB.REPO}/contents/${GITHUB.source}`;
+let res = new XMLHttpRequest();
+res.onreadystatechange = function() {
+  if (this.readyState !== 4) return;
+  if (this.status >= 200 && this.status < 300) {
+    return resolve(this.status, JSON.parse(this.responseText));
+  }
+  return reject(this.status, JSON.parse(this.responseText));
+};
+res.submit('GET', source);
+res.send();
 
-function resolve(res) {
-    console.log(res);
+function resolve(status, data) {
+    console.log(status, data);
 }
 
-response.send();
-response.end();
-
+function reject(status, data) {
+    console.error(status, data);
+}
