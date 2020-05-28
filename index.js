@@ -1,11 +1,24 @@
-// index.js
-const core = require('@actions/core');
+//* Built-in(s)
+const fs = require('fs');
+const http = require('http');
+
+//* Node Module(s)
 const { base64encode, base64decode } = require('nodejs-base64');
 
+const JSON = {
+    parse: require('json-parse'),
+    stringify: require('json-stringify')
+};
+
+//* Core Package(s)
+const core = require('@actions/core');
+
+//* Default Variable(s)
 const GITHUB = {
+    HOST: 'api.github.com',
     USER: core.getInput('user'),
     TOKEN: core.getInput('token'),
-    BRANCH: core.getInput('branch'),
+    BRANCH: core.getInput('branch') || 'master',
     REPO: core.getInput('repo'),
     COMMIT: {
         message: core.getInput('message'),
@@ -14,7 +27,8 @@ const GITHUB = {
         destination: core.getInput('dist') || core.getInput('file')
     },
     get CREDENTIAL() {
-        return `https://${this.USER}:${this.TOKEN}@api.github.com/contents/${this.REPO}`;
+        if (!this.USER || !this.TOKEN) return '';
+        return `${this.USER}:${this.TOKEN}@api.github.com`;
     },
     get data() {
         let result = {
@@ -33,17 +47,32 @@ const GITHUB = {
     },
     get source() {
         let [path, branch] = this.COMMIT.source.split('@');
-        typeof branch === 'undefined' && (branch = this.BRANCH);
-        return `${this.CREDENTIAL}/${path}?ref=${branch}`;
+        branch = branch || this.BRANCH;
+        return `/${this.REPO}/contents/${path}?ref=${branch}`;
     },
     get destination() {
         let [path, branch] = this.COMMIT.destination.split('@');
-        typeof branch === 'undefined' && (branch = this.BRANCH);
-        return `${this.CREDENTIAL}/${path}?ref=${branch}`;
-    }
+        branch = branch || this.BRANCH;
+        return `/${this.REPO}/contents/${path}?ref=${branch}`;
+    },
+    
 };
 
-console.log([
-  GITHUB.CREDENTIAL,
-  GITHUB.source, GITHUB.destination, GITHUB.data
-]);
+// ...code start here...
+let response = http.get({
+    auth: GITHUB.CREDENTIAL,
+    host: GITHUB.HOST,
+    path: GITHUB.source,
+    method: 'GET',
+    headers: { 
+      'Content-Type': 'application/json'
+    }
+}, resolve);
+
+function resolve(res) {
+    console.log(res);
+}
+
+response.send();
+response.end();
+
