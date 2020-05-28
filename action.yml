@@ -22,6 +22,5 @@ inputs:
     description: 'Commit message'
 
 runs:
-   use: ubuntu-latest
-
-
+   using: 'node12'
+   main: 'index.js'
