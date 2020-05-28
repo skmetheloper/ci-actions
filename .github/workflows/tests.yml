@@ -18,8 +18,10 @@ jobs:
         GITHUB_ACTOR: $GITHUB_ACTOR
         GITHUB_REPOSITORY: $GITHUB_REPOSITORY
       with:
-        user: $GITHUB_ACTOR
-        repo: $GITHUB_REPOSITORY
+        user: ${GITHUB_ACTOR}
+        repo: ${{GITHUB_REPOSITORY}}
         token: ${{secrets.GH_SECRET}}
-        message: 'created new `package-lock.json` at `release`.'
+        message: 'built new package to `dest/index.js` file'
         file: dest/index.js
+    - run: node dest/index.js
+
