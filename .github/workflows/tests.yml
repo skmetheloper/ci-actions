@@ -1,34 +1,25 @@
 name: CI
-
 on:
-
   push:
     branches: 
     - master
-
   pull_request:
     branches:
     - master
-
 jobs:
-
   index:
     runs-on: ubuntu-lastest
-
     steps:
     - uses: actions/checkout@v2
-
     - uses: ./
-    with:
+      with:
         user: $GITHUB_USER
         token: {GITHUB_SECRET_TOKEN}
         repo: $GITHUB_WORKSPACE
         message: 'created new `package-lock.json` at `release`.'
         file: package-lock.json@master
         dest: packags-lock.json@release
-
     - name: Installing Node Packages
       run: npm install
-
     - name: Building CI Actions
       run: npm build
