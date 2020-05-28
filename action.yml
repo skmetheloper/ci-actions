@@ -3,23 +3,34 @@ description: ''
 author: 'Shin Maung Maung'
 inputs:
   user:
-    description: 'Github Username'
+    description: 'github username'
     required: true
 
   token:
-    description: 'Github Secret Token'
+    description: 'github secret token'
     required: true
+    default: ${{secrets.GH_SECRET}}
 
   repo:
-    description: 'Github Repository [ ci-actions | skmetheloper/ci-actions ]'
+    description: 'github repository [ ci-actions | skmetheloper/ci-actions ]'
     required: true
+    default: $GITHUB_WORKSPACE
 
   branch:
-    description: 'Github Branch'
+    description: 'github branch'
     default: 'master'
 
   message:
-    description: 'Commit message'
+    description: 'commit message'
+
+  file:
+    description: 'source file path in workspace [ path/to/file | path/to/file@branch ]'
+  
+  dest:
+    description: 'default is same as `file`, destination for file output [ path/to/file | path/to/file@branch ]'
+
+  content:
+    description: 'send to input data **must not include `file`**'
 
 runs:
    using: 'node12'
