@@ -27,6 +27,8 @@ jobs:
         file: package-lock.json@master
         dest: packags-lock.json@release
 
-    - run: npm install
+    - name: Installing Node Packages
+      run: npm install
 
-    - run: npm build
+    - name: Building CI Actions
+      run: npm build
