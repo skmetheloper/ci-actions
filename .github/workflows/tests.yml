@@ -15,7 +15,7 @@ jobs:
     - run: npm run-script package
     - uses: ./
       with:
-        token: '{YOUR_SECRET_TOKEN}'
+        token: ${{secrets.GH_SECRET}}
         message: 'created new `package-lock.json` at `release`.'
         file: dest/index.js
 
