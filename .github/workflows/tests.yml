@@ -12,18 +12,10 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - run: npm install
+    - run: npm run-script package
     - uses: ./
       with:
-        user: $GITHUB_USER
         token: '{YOUR_SECRET_TOKEN}'
-        repo: $GITHUB_WORKSPACE
         message: 'created new `package-lock.json` at `release`.'
-        file: package-lock.json@master
-        dest: packags-lock.json@release
-    - name: Vanilla Node
-      run: node index.js
-    # - name: Eslint
-    #   run: npm run-script lint
-    - name: Build Package
-      run: npm run-script package
+        file: dest/index.js
 
