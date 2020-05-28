@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    branches: 
+    - master
+
+  pull_request:
+    branches:
+    - master
+
+jobs:
+  runs-on: ubuntu-lastest
+
+  index:
+    steps:
+    - uses: actions/checkout@v2
+    - run: npm build
+      with:
+        user: $GITHUB_USER
+        token: {GITHUB_SECRET_TOKEN}
+        repo: $GITHUB_WORKSPACE
+        message: 'created new `package-lock.json` at `release`.'
+        from: package-lock.json@master
+        to: packags-lock.json@release
+
