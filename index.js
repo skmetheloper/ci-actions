@@ -1,5 +1,6 @@
 // index.js
 const core = require('@actions/core');
+const { base64encode, base64decode } = require('nodejs-base64');
 
 const GITHUB = {
     USER: core.getInput('user'),
@@ -26,7 +27,7 @@ const GITHUB = {
             result.sha = this.COMMIT.sha;
         }
 
-        result.content = btoa(result.content);
+        result.content = base64encode(result.content);
 
         return result;
     },
