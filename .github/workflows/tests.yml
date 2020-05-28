@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - run: npm install
     - uses: ./
       with:
         user: $GITHUB_USER
@@ -19,7 +20,5 @@ jobs:
         message: 'created new `package-lock.json` at `release`.'
         file: package-lock.json@master
         dest: packags-lock.json@release
-    - name: Installing Node Packages
-      run: npm install
     - name: Building CI Actions
-      run: npm build
+      run: npm run-script build
