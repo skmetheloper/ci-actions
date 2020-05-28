@@ -14,6 +14,9 @@ jobs:
     - run: npm install
     - run: npm run-script package
     - uses: ./
+      env:
+        GITHUB_ACTOR: $GITHUB_ACTOR
+        GITHUB_REPOSITORY: $GITHUB_REPOSITORY
       with:
         user: $GITHUB_ACTOR
         repo: $GITHUB_REPOSITORY
