@@ -1,0 +1,27 @@
+name: 'CI Action PHP Script'
+description: ''
+author: 'Shin Maung Maung'
+inputs:
+  user:
+    description: 'Github Username'
+    required: true
+
+  token:
+    description: 'Github Secret Token'
+    required: true
+
+  repo:
+    description: 'Github Repository [ ci-actions | skmetheloper/ci-actions ]'
+    required: true
+
+  branch:
+    description: 'Github Branch'
+    default: 'master'
+
+  message:
+    description: 'Commit message'
+
+runs:
+   use: ubuntu-latest
+
+
